@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nyxora Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HOME -->
+    <div class="page active" id="pg-home">
+        <div class="hdr">
+            <div class="logo-wrap">
+                <div class="logo-box">
+                    <img src="https://i.postimg.cc/sxNpKzNC/Picsart-26-05-25-09-41-18-423.png" alt="logo" onerror="this.style.display='none'">
+                </div>
+                <div class="logo-txt">
+                    <div class="n1">NYXORA</div>
+                    <div class="n2">STORE</div>
+                </div>
+            </div>
+            <div class="hdr-btns">
+                <button class="hbtn" onclick="goPage('pg-search')">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+                <button class="hbtn" onclick="goPage('pg-settings')">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+                </button>
+            </div>
+        </div>
+        <img src="https://i.postimg.cc/63zV2nVN/Picsart-26-05-25-09-47-39-993.png" style="width:100%;display:block;cursor:pointer;" onclick="goPage('pg-cats')" onerror="this.style.display='none'" alt="banner">
+        <div class="sec-hdr"><div class="sec-title">Top Categories</div><div class="view-all" onclick="goPage('pg-cats')">View all</div></div>
+        <div class="cat-grid">
+            <div class="cat-item" onclick="filterAndGo('Games')">
+                <div class="cat-ic" style="background:linear-gradient(145deg,#ff4040,#cc0000);box-shadow:0 4px 0 #880000;">
+                    <svg viewBox="0 0 24 24"><line x1="6" y1="12" x2="18" y2="12"/><line x1="12" y1="6" x2="12" y2="18"/><rect x="2" y="6" width="20" height="12" rx="3"/></svg>
+                </div>
+                <div class="cat-name">Games</div>
+            </div>
+            <div class="cat-item" onclick="filterAndGo('Editors')">
+                <div class="cat-ic" style="background:linear-gradient(145deg,#448aff,#1565c0);box-shadow:0 4px 0 #0d47a1;">
+                    <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg>
+                </div>
+                <div class="cat-name">Editors</div>
+            </div>
+            <div class="cat-item" onclick="filterAndGo('Tools')">
+                <div class="cat-ic" style="background:linear-gradient(145deg,#66bb6a,#2e7d32);box-shadow:0 4px 0 #1b5e20;">
+                    <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <div class="cat-name">Tools</div>
+            </div>
+            <div class="cat-item" onclick="filterAndGo('Streaming')">
+                <div class="cat-ic" style="background:linear-gradient(145deg,#ffa726,#e65100);box-shadow:0 4px 0 #bf360c;">
+                    <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                </div>
+                <div class="cat-name">Streaming</div>
+            </div>
+        </div>
+        <div class="sec-hdr" style="margin-top:4px;"><div class="sec-title">Popular Apps</div><div class="view-all" onclick="goPage('pg-top')">View all</div></div>
+        <div class="h-scroll" id="home-pop"></div>
+        <div class="sec-hdr"><div class="sec-title">Latest Apps</div><div class="view-all" onclick="goPage('pg-latest')">View all</div></div>
+        <div class="h-scroll" id="home-latest"></div>
+        <div class="sec-hdr"><div class="sec-title">Games</div><div class="view-all" onclick="filterAndGo('Games')">View all</div></div>
+        <div class="h-scroll" id="home-games"></div>
+        <div class="sec-hdr"><div class="sec-title">Editors</div><div class="view-all" onclick="filterAndGo('Editors')">View all</div></div>
+        <div class="h-scroll" id="home-editors"></div>
+        <div class="sec-hdr"><div class="sec-title">Tools</div><div class="view-all" onclick="filterAndGo('Tools')">View all</div></div>
+        <div class="h-scroll" id="home-tools"></div>
+        <div class="sec-hdr"><div class="sec-title">Streaming</div><div class="view-all" onclick="filterAndGo('Streaming')">View all</div></div>
+        <div class="h-scroll" id="home-streaming" style="padding-bottom:20px;"></div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="page" id="pg-cats">
+        <div class="hdr">
+            <div class="logo-wrap">
+                <button class="hbtn" onclick="goPage('pg-home')" style="margin-right:6px;">
+                    <svg viewBox="0 0 24 24" style="width:17px;height:17px;stroke:var(--txt);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div style="font-size:17px;font-weight:900;">Categories</div>
+            </div>
+            <button class="hbtn" onclick="goPage('pg-search')">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+        </div>
+        <div style="padding:12px 14px;" id="cats-list"></div>
+    </div>
+
+    <!-- DETAIL -->
+    <div class="page" id="pg-detail">
+        <div class="hdr">
+            <div class="logo-wrap">
+                <button class="hbtn" id="dp-back">
+                    <svg viewBox="0 0 24 24" style="width:17px;height:17px;stroke:var(--txt);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div style="font-size:14px;font-weight:800;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" id="dp-title"></div>
+            </div>
+            <button class="hbtn" id="dp-fav">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+        </div>
+        <div id="dp-body"></div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="page" id="pg-search">
+        <div class="srch-wrap">
+            <div class="bg-blob"></div>
+            <div class="bg-blob2"></div>
+            <div class="srch-head">
+                <button onclick="goPage(prevPg||'pg-home')">
+                    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div class="title">Search Apps</div>
+            </div>
+            <div class="srch-input-box">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="si" placeholder="Search apps, games, tools..." oninput="onSrch(this.value)" autocomplete="off">
+                <div class="srch-clear" id="si-x" onclick="clearSrch()">
+                    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </div>
+            </div>
+        </div>
+        <div class="chip-row">
+            <div class="wrap">
+                <button class="tag-chip act" onclick="setSCat(this,'All')">All</button>
+                <button class="tag-chip" onclick="setSCat(this,'Games')">Games</button>
+                <button class="tag-chip" onclick="setSCat(this,'Editors')">Editors</button>
+                <button class="tag-chip" onclick="setSCat(this,'Tools')">Tools</button>
+                <button class="tag-chip" onclick="setSCat(this,'Streaming')">Streaming</button>
+            </div>
+        </div>
+        <div id="srch-home" style="padding:4px 14px 80px;"></div>
+        <div id="srch-res" style="display:none;padding:4px 14px 80px;"></div>
+    </div>
+
+    <!-- TOP CHARTS -->
+    <div class="page" id="pg-top">
+        <div class="hdr"><div style="font-size:17px;font-weight:900;">Top Charts</div></div>
+        <div class="chart-tabs">
+            <button class="chart-tab active" onclick="setChart(this,0)">Top Free</button>
+            <button class="chart-tab" onclick="setChart(this,1)">Top Rated</button>
+            <button class="chart-tab" onclick="setChart(this,2)">Trending</button>
+        </div>
+        <div style="padding:4px 14px 80px;" id="chart-list"></div>
+    </div>
+
+    <!-- LATEST -->
+    <div class="page" id="pg-latest">
+        <div class="hdr"><div style="font-size:17px;font-weight:900;">Latest Apps</div></div>
+        <div style="padding:10px 14px 80px;" id="latest-list"></div>
+    </div>
+
+    <!-- OFFERS -->
+    <div class="page" id="pg-offers">
+        <div class="hdr"><div style="font-size:17px;font-weight:900;">Offers</div></div>
+        <div class="offer-banner">
+            <div>
+                <div style="font-size:11px;opacity:.8;font-weight:700;margin-bottom:2px;">Summer Special</div>
+                <div style="font-size:30px;font-weight:900;line-height:1;">50% OFF</div>
+                <div style="font-size:11px;opacity:.85;font-weight:600;margin-bottom:10px;">On Premium Apps</div>
+                <button style="background:#fff;color:var(--red);border:none;border-radius:11px;padding:9px 18px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,0.1);">Grab Now</button>
+            </div>
+            <svg style="width:64px;height:64px;stroke:rgba(255,255,255,0.3);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;" viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        <div class="sec-hdr"><div class="sec-title">Exclusive Offers</div></div>
+        <div style="padding:0 14px 80px;display:flex;flex-direction:column;gap:10px;" id="offers-list"></div>
+    </div>
+
+    <!-- BLOG -->
+    <div class="page" id="pg-blog">
+        <div class="hdr"><div style="font-size:17px;font-weight:900;">Blog</div></div>
+        <div style="padding:14px;display:flex;flex-direction:column;gap:12px;padding-bottom:80px;">
+            <div class="card3d" style="padding:14px;cursor:pointer;">
+                <div class="blog-img"><svg style="width:40px;height:40px;stroke:rgba(255,255,255,.4);fill:none;stroke-width:1.5;" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <span class="blog-tag" style="background:var(--reds);color:var(--red);">Tips &amp; Tricks</span>
+                <div style="font-size:14px;font-weight:800;margin-bottom:3px;">How to Keep Your Android Safe</div>
+                <div style="font-size:10px;color:var(--txt2);font-weight:600;">May 12, 2024</div>
+            </div>
+            <div class="card3d" style="padding:13px;cursor:pointer;">
+                <div style="display:flex;gap:12px;align-items:flex-start;">
+                    <div style="width:72px;height:54px;border-radius:11px;background:linear-gradient(135deg,#1a237e,#283593);flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 rgba(0,0,0,0.12);">
+                        <svg style="width:22px;height:22px;stroke:rgba(255,255,255,.5);fill:none;stroke-width:1.8;" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                    </div>
+                    <div><span class="blog-tag" style="background:rgba(41,121,255,.1);color:var(--blu);">Reviews</span>
+                        <div style="font-size:12px;font-weight:800;margin-bottom:2px;">Best Video Editing Apps 2024</div>
+                        <div style="font-size:10px;color:var(--txt2);font-weight:600;">May 10, 2024</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card3d" style="padding:13px;cursor:pointer;">
+                <div style="display:flex;gap:12px;align-items:flex-start;">
+                    <div style="width:72px;height:54px;border-radius:11px;background:linear-gradient(135deg,#1b5e20,#2e7d32);flex-shrink:0;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 0 rgba(0,0,0,0.12);">
+                        <svg style="width:22px;height:22px;stroke:rgba(255,255,255,.5);fill:none;stroke-width:1.8;" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    </div>
+                    <div><span class="blog-tag" style="background:rgba(52,199,89,.1);color:var(--grn);">Guide</span>
+                        <div style="font-size:12px;font-weight:800;margin-bottom:2px;">Top 10 Apps for Students</div>
+                        <div style="font-size:10px;color:var(--txt2);font-weight:600;">May 08, 2024</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DOWNLOADS -->
+    <div class="page" id="pg-dl">
+        <div class="hdr"><div style="font-size:17px;font-weight:900;">My Downloads</div></div>
+        <div style="display:flex;gap:8px;padding:10px 14px 4px;">
+            <button class="chart-tab active" onclick="setDlTab(this,0)" style="padding:9px;">Downloaded</button>
+            <button class="chart-tab" onclick="setDlTab(this,1)" style="padding:9px;">Updates</button>
+        </div>
+        <div id="dl-body" style="padding:4px 14px 80px;"></div>
+    </div>
+
+    <!-- PROFILE / SETTINGS -->
+    <div class="page" id="pg-settings">
+        <div class="hdr">
+            <div style="font-size:17px;font-weight:900;">Profile</div>
+            <button class="hbtn" onclick="goPage('pg-home')">
+                <svg viewBox="0 0 24 24" style="width:17px;height:17px;stroke:var(--txt);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <div style="padding:14px;display:flex;flex-direction:column;gap:10px;padding-bottom:80px;" id="settings-body"></div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <div class="bnav">
+        <button class="bn active" onclick="goPage('pg-home')" id="bn-home">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>Home</span>
+        </button>
+        <button class="bn" onclick="goPage('pg-cats')" id="bn-cats">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>Categories</span>
+        </button>
+        <button class="bn" onclick="goPage('pg-top')" id="bn-top">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <span>Top Charts</span>
+        </button>
+        <button class="bn" onclick="goPage('pg-search')" id="bn-search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span>Search</span>
+        </button>
+        <button class="bn" onclick="goPage('pg-settings')" id="bn-profile">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+            <span>Profile</span>
+        </button>
+    </div>
+
+    <script src="app-data.js"></script>
+    <script src="app-state.js"></script>
+    <script src="app-ui.js"></script>
+    <script src="app-main.js"></script>
+</body>
+          </html>
